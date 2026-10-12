@@ -1,0 +1,8 @@
+com\expensetracker\BaseIntegrationTest.class
+com\expensetracker\UserIsolationIntegrationTest.class
+com\expensetracker\BudgetIntegrationTest.class
+com\expensetracker\AuthIntegrationTest.class
+com\expensetracker\AnalyticsIntegrationTest.class
+com\expensetracker\ActuatorAndSecurityIntegrationTest.class
+com\expensetracker\CategoryIntegrationTest.class
+com\expensetracker\ExpenseIntegrationTest.class
