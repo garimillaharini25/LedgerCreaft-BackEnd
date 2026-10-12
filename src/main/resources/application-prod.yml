@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://${TIDB_HOST}:${TIDB_PORT:4000}/${TIDB_DATABASE}?sslMode=VERIFY_IDENTITY&useSSL=true&serverTimezone=UTC
-    username: ${TIDB_USERNAME}
-    password: ${TIDB_PASSWORD}
+    url: jdbc:mysql://${TIDB_HOST:gateway01.ap-northeast-1.prod.aws.tidbcloud.com}:${TIDB_PORT:4000}/${TIDB_DATABASE:expense_tracker}?sslMode=VERIFY_IDENTITY&useSSL=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: ${TIDB_USERNAME:3FkEjb5f2yeAfhG.root}
+    password: ${TIDB_PASSWORD:5YS33dbR4RDFDA5I}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 10
@@ -10,6 +10,8 @@ spring:
       idle-timeout: 300000
       connection-timeout: 20000
       max-lifetime: 1200000
+      keepalive-time: 30000
+      validation-timeout: 3000
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
@@ -17,11 +19,13 @@ spring:
     show-sql: false
   flyway:
     enabled: true
-    baseline-on-migrate: false
-    locations: classpath:db/migration
+    baseline-on-migrate: true
+    baseline-version: "0"
+    validate-on-migrate: false
+    locations: classpath:db/migration,classpath:db/seed
 
 springdoc:
   api-docs:
-    enabled: false
+    enabled: true
   swagger-ui:
-    enabled: false
+    enabled: true
